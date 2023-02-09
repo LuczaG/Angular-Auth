@@ -6,7 +6,7 @@ import { AccountService } from '@app/_services/account.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private accountService: AccountService) { }
+    constructor(private accountService: AccountService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(catchError(err => {
@@ -18,6 +18,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             const error = err.error.message || err.statusText;
             console.error(err);
             return throwError(() => error);
-        }));
+        }))
     }
 }
